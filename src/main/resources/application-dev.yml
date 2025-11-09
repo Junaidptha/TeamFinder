@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+
+      uri: mongodb+srv://newTeamFinder:newTeamFinder@cluster0.uvvw4j0.mongodb.net/?appName=Cluster0
+      database: TeamFinder
+      auto-index-creation: true  # Note: Corrected typo (was 'sprint' before)
+
+server:
+  port: 8085
