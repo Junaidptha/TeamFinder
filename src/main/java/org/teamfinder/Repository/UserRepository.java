@@ -8,9 +8,7 @@ import java.util.Optional;
 
 public interface UserRepository extends MongoRepository<User , ObjectId> {
     Optional<User> findByUserName(String userName);
-    ;
-
-    Void deleteByUserName(String userName);
+    void deleteByUserName(String userName);
     User findByEmail(String email);
 
 }

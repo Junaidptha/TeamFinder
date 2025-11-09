@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.teamfinder.Entity.ProjectEntry;
-import org.teamfinder.Service.ProjectMembershipService;
 import org.teamfinder.Service.ProjectService;
 
 import java.util.List;
@@ -64,7 +63,7 @@ public class ProjectController {
 
             return new ResponseEntity<>(userProjects, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -74,7 +73,7 @@ public class ProjectController {
     public ResponseEntity<List<ProjectEntry>> getAllProjects() {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String ownerEmail = authentication.getName();
+//            String ownerEmail = authentication.getName();
             List<ProjectEntry> allProjects = projectService.getAll();
             return new ResponseEntity<>(allProjects, HttpStatus.OK);
         } catch (Exception e) {

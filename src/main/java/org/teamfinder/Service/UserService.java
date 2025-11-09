@@ -27,19 +27,16 @@ public class UserService {
 
 
 
-    public boolean saveNewEntry(User user) {
+    public void saveNewEntry(User user) {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             user.setRoles(Arrays.asList("USER"));
             userRepository.save(user);
-            return true;
 
         }catch (Exception e){
             log.error("error occurred for {}:" , user.getUserName());
-            return false;
         }
-
     }
 
     public  void saveUser(User user){
