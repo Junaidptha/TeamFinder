@@ -5,13 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.teamfinder.Entity.User;
 import org.teamfinder.Repository.UserRepository;
-import org.teamfinder.Service.UserService;
 import org.teamfinder.Security.JwtUtil;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.teamfinder.Service.UserService;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
@@ -36,15 +39,17 @@ public class PublicController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
         }
 
-        // Encrypt password before saving
-        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        userService.saveNewEntry(newUser);
 
-        // Default role
-        if (newUser.getRoles() == null || newUser.getRoles().isEmpty()) {
-            newUser.setRoles(Collections.singletonList("USER"));
-        }
-
-        userRepository.save(newUser);
+//        // Encrypt password before saving
+//        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+//
+//        // Default role
+//        if (newUser.getRoles() == null || newUser.getRoles().isEmpty()) {
+//            newUser.setRoles(Collections.singletonList("USER"));
+//        }
+//
+//        userRepository.save(newUser);
         return ResponseEntity.ok("User registered successfully!");
     }
 

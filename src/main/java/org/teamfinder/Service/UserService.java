@@ -3,14 +3,15 @@ package org.teamfinder.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.teamfinder.Entity.User;
 import org.teamfinder.Repository.UserRepository;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -36,8 +37,6 @@ public class UserService {
 
         }catch (Exception e){
             log.error("error occurred for {}:" , user.getUserName());
-            log.info(" hahhah");
-            log.debug("hjahsjhdjahjdhsa");
             return false;
         }
 

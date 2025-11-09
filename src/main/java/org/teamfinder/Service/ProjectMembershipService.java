@@ -1,7 +1,7 @@
 package org.teamfinder.Service;
 
+import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.teamfinder.Entity.ProjectEntry;
 import org.teamfinder.Entity.User;
@@ -12,13 +12,12 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProjectMembershipService {
 
-    @Autowired
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     // 🔹 1. User sends a join request
 
