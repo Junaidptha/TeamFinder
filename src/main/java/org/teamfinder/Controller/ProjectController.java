@@ -28,10 +28,10 @@ public class ProjectController {
 
     private final ProjectMembershipService projectMembershipService;
 
-    @GetMapping("/secure-test")
-    public String secureTest() {
-        return "✅ Token is valid, secure endpoint accessed!";
-    }
+//    @GetMapping("/secure-test")
+//    public String secureTest() {
+//        return "✅ Token is valid, secure endpoint accessed!";
+//    }
 
     //Create new project (only logged-in user can create)
     @PostMapping
@@ -59,10 +59,10 @@ public class ProjectController {
         try {
             // Get the currently authenticated user's email/username
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String ownerEmail = authentication.getName();
+            String userName = authentication.getName();
 
             // Fetch only that user's projects
-            List<ProjectEntry> userProjects = projectService.getUserProjects(ownerEmail);
+            List<ProjectEntry> userProjects = projectService.getUserProjects(userName);
 
             return new ResponseEntity<>(userProjects, HttpStatus.OK);
         } catch (Exception e) {
@@ -132,35 +132,35 @@ public class ProjectController {
     }
 
 
-    @PutMapping("/update/{id}")
-    public void updateProject(@PathVariable ObjectId id , @RequestBody ProjectEntry newProjectEntry){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userName = authentication.getName();
-        Optional<ProjectEntry> projectOpt = projectService.getById(id);
-        if (projectOpt.isPresent()) {
-            ProjectEntry oldProjectEntry = projectOpt.get();
-            oldProjectEntry.setTitle(newProjectEntry.getTitle() != null && !newProjectEntry.getTitle().isEmpty()
-                    ? newProjectEntry.getTitle()
-                    : oldProjectEntry.getTitle());
-            oldProjectEntry.setDescription(
-                    newProjectEntry.getDescription() != null && !newProjectEntry.getDescription().isEmpty()
-                            ? newProjectEntry.getDescription()
-                            : oldProjectEntry.getDescription()
-            );
-
-            oldProjectEntry.setTechnology(
-                    newProjectEntry.getTechnology() != null && !newProjectEntry.getTechnology().isEmpty()
-                            ? newProjectEntry.getTechnology()
-                            : oldProjectEntry.getTechnology()
-            );
-
-            oldProjectEntry.setOwnerEmail(
-                    newProjectEntry.getOwnerEmail() != null && !newProjectEntry.getOwnerEmail().isEmpty()
-                            ? newProjectEntry.getOwnerEmail()
-                            : oldProjectEntry.getOwnerEmail()
-            );
-//            projectService.saveProject(oldProjectEntry);
-
-        }
-    }
+//    @PutMapping("/update/{id}")
+//    public void updateProject(@PathVariable ObjectId id , @RequestBody ProjectEntry newProjectEntry){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String userName = authentication.getName();
+//        Optional<ProjectEntry> projectOpt = projectService.getById(id);
+//        if (projectOpt.isPresent()) {
+//            ProjectEntry oldProjectEntry = projectOpt.get();
+//            oldProjectEntry.setTitle(newProjectEntry.getTitle() != null && !newProjectEntry.getTitle().isEmpty()
+//                    ? newProjectEntry.getTitle()
+//                    : oldProjectEntry.getTitle());
+//            oldProjectEntry.setDescription(
+//                    newProjectEntry.getDescription() != null && !newProjectEntry.getDescription().isEmpty()
+//                            ? newProjectEntry.getDescription()
+//                            : oldProjectEntry.getDescription()
+//            );
+//
+//            oldProjectEntry.setTechnology(
+//                    newProjectEntry.getTechnology() != null && !newProjectEntry.getTechnology().isEmpty()
+//                            ? newProjectEntry.getTechnology()
+//                            : oldProjectEntry.getTechnology()
+//            );
+//
+//            oldProjectEntry.setOwnerEmail(
+//                    newProjectEntry.getOwnerEmail() != null && !newProjectEntry.getOwnerEmail().isEmpty()
+//                            ? newProjectEntry.getOwnerEmail()
+//                            : oldProjectEntry.getOwnerEmail()
+//            );
+//           projectService.saveProject(oldProjectEntry);
+//
+//        }
+//    }
 }

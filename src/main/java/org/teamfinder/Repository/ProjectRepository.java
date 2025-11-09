@@ -7,9 +7,12 @@ import org.teamfinder.Entity.ProjectEntry;
 import java.util.List;
 
 public interface ProjectRepository extends MongoRepository<ProjectEntry, ObjectId> {
-    List<ProjectEntry> findByOwnerEmail(String ownerEmail );
+    List<ProjectEntry> findByOwnerEmail(String Email );
 
-    boolean existsByTitleAndOwnerName(String title, String userName);
+    boolean existsByTitleAndUserName(String title, String userName);
+
+    List<ProjectEntry> findByUserName(String userName);
+
 }
 
 

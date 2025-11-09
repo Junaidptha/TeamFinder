@@ -30,7 +30,7 @@ public class ProjectMembershipService {
         ProjectEntry project = projectOpt.get();
 
 
-        if (project.getOwnerName().equals(username)) return "Owner cannot join their own project";
+        if (project.getUserName().equals(username)) return "Owner cannot join their own project";
 
         if (project.getJoinRequests() == null) project.setJoinRequests(new ArrayList<>());
         if (project.getMembers().contains(username)) return "Already a member";
@@ -51,7 +51,7 @@ public class ProjectMembershipService {
         if (projectOpt.isEmpty()) return "Project not found";
 
         ProjectEntry project = projectOpt.get();
-        if (!project.getOwnerName().equals(ownerUsername)) {
+        if (!project.getUserName().equals(ownerUsername)) {
             return "Only the owner can accept requests";
         }
 
@@ -85,7 +85,7 @@ public class ProjectMembershipService {
 
         ProjectEntry project = projectOpt.get();
 
-        if (!project.getOwnerName().equals(ownerUserName)) {
+        if (!project.getUserName().equals(ownerUserName)) {
             return "Only project owner can reject requests.";
         }
 
@@ -105,7 +105,7 @@ public class ProjectMembershipService {
         if (projectOpt.isEmpty()) return "Project not found";
 
         ProjectEntry project = projectOpt.get();
-        if (!project.getOwnerName().equals(ownerUsername)) {
+        if (!project.getUserName().equals(ownerUsername)) {
             return "Only owner can remove members";
         }
 

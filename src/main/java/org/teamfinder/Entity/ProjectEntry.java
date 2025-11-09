@@ -20,9 +20,9 @@ public class ProjectEntry {
     private String id;
     private String title;
     private String description;
-    private String technology;
+    private List<String> technologies = new ArrayList<>();
     private String ownerEmail;
-    private String ownerName;
+    private String userName;
     private LocalDateTime date;
     private String leader;
 

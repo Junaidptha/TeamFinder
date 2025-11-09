@@ -2,7 +2,6 @@ package org.teamfinder.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.teamfinder.Entity.ProjectEntry;
 import org.teamfinder.Entity.User;
@@ -26,7 +25,7 @@ public class ProjectService {
     public void saveProject( ProjectEntry projectEntry ,String userName){
 
 
-            boolean exists = projectRepository.existsByTitleAndOwnerName(
+            boolean exists = projectRepository.existsByTitleAndUserName(
                     projectEntry.getTitle(),
                     userName
             );
@@ -36,7 +35,7 @@ public class ProjectService {
             }
             User user = userService.findByUserName(userName);
             projectEntry.setDate(LocalDateTime.now());
-            projectEntry.setOwnerName(user.getUserName());
+            projectEntry.setUserName(user.getUserName());
             projectEntry.setOwnerEmail(user.getEmail());
             projectEntry.setLeader(user.getUserName());
 
@@ -60,8 +59,8 @@ public class ProjectService {
 //        projectRepository.save(projectEntry);
 //    }
 //
-    public List<ProjectEntry> getUserProjects(String ownerEmail){
-        return projectRepository.findByOwnerEmail(ownerEmail);
+    public List<ProjectEntry> getUserProjects(String userName){
+        return projectRepository.findByUserName(userName);
     }
 
     public List<ProjectEntry> getAll(){
