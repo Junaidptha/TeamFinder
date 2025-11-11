@@ -69,8 +69,8 @@ Users can upload project details, request to join teams, and access project-spec
 
 ### 🔧 Tips before you push to GitHub:
 1. Replace  
-   - `<your-username>` → with your GitHub username  
-   - `<your-repo-name>` → your repository name  
+   - `<junaidptha>` → with your GitHub username  
+   - `<TeamFinder>` → your repository name  
    - `[junaid@example.com]` → your real email  
    - `[LinkedIn](#)` → your LinkedIn URL  
 
