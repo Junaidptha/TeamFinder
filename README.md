@@ -64,21 +64,3 @@ Users can upload project details, request to join teams, and access project-spec
 
 
 
-
----
-
-### 🔧 Tips before you push to GitHub:
-1. Replace  
-   - `<junaidptha>` → with your GitHub username  
-   - `<TeamFinder>` → your repository name  
-   - `[junaid@gmail.com]` → your real email    
-
-2. Save this as `README.md` in the **root folder** of your project.
-
-3. Commit and push:
-   ```bash
-   git add README.md
-   git commit -m "Added professional README"
-   git push origin main
-
-
