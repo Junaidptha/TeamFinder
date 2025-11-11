@@ -71,8 +71,7 @@ Users can upload project details, request to join teams, and access project-spec
 1. Replace  
    - `<junaidptha>` → with your GitHub username  
    - `<TeamFinder>` → your repository name  
-   - `[junaid@example.com]` → your real email  
-   - `[LinkedIn](#)` → your LinkedIn URL  
+   - `[junaid@gmail.com]` → your real email    
 
 2. Save this as `README.md` in the **root folder** of your project.
 
