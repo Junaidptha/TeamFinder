@@ -62,5 +62,35 @@ Users can upload project details, request to join teams, and access project-spec
 ## 📁 Project Structure
 
 
-
+TeamFinder/
+├── src/
+│ ├── main/
+│ │ ├── java/
+│ │ │ └── org/teamfinder/
+│ │ │ ├── Controller/
+│ │ │ │ ├── AuthController.java
+│ │ │ │ ├── ProjectController.java
+│ │ │ │ └── ProjectMembershipController.java
+│ │ │ ├── Entity/
+│ │ │ │ ├── User.java
+│ │ │ │ └── ProjectEntry.java
+│ │ │ ├── Repository/
+│ │ │ │ ├── UserRepository.java
+│ │ │ │ └── ProjectRepository.java
+│ │ │ ├── Security/
+│ │ │ │ ├── JwtAuthFilter.java
+│ │ │ │ ├── JwtUtil.java
+│ │ │ │ └── SecurityConfig.java
+│ │ │ ├── Service/
+│ │ │ │ ├── UserService.java
+│ │ │ │ ├── ProjectService.java
+│ │ │ │ └── ProjectMembershipService.java
+│ │ │ └── TeamFinderApplication.java
+│ │ └── resources/
+│ │ ├── application.properties
+│ │ └── static/
+│ └── test/
+│ └── java/
+├── pom.xml
+└── README.md
 
