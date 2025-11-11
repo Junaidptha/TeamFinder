@@ -61,3 +61,25 @@ Users can upload project details, request to join teams, and access project-spec
 
 ## 📁 Project Structure
 
+
+
+
+
+---
+
+### 🔧 Tips before you push to GitHub:
+1. Replace  
+   - `<your-username>` → with your GitHub username  
+   - `<your-repo-name>` → your repository name  
+   - `[junaid@example.com]` → your real email  
+   - `[LinkedIn](#)` → your LinkedIn URL  
+
+2. Save this as `README.md` in the **root folder** of your project.
+
+3. Commit and push:
+   ```bash
+   git add README.md
+   git commit -m "Added professional README"
+   git push origin main
+
+
