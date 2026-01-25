@@ -5,6 +5,8 @@ spring:
       uri: mongodb+srv://newTeamFinder:newTeamFinder@cluster0.uvvw4j0.mongodb.net/?appName=Cluster0
       database: TeamFinder
       auto-index-creation: true  # Note: Corrected typo (was 'sprint' before)
+jwt:
+  secretKey: Y0uR$up3rS3cr3tJWTKeyForEncryption@2025
 
 server:
   port: 8085

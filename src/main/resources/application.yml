@@ -10,12 +10,6 @@ spring:
 #      example:
 #        demo: DEBUG
 
-jwt:
-  secretKey: Y0uR$up3rS3cr3tJWTKeyForEncryption@2025
-
-
-
-
 
 server:
   servlet:

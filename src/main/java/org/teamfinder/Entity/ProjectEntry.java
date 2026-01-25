@@ -29,4 +29,8 @@ public class ProjectEntry {
     private List<String> joinRequests = new ArrayList<>();
 
     private List<String> members = new ArrayList<>();
+//    // 🔹 Hidden details visible only to owner + joined members
+//    private String githubRepo;
+//    private String projectPlan;
+//    private String apiKey;
 }

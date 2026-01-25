@@ -9,7 +9,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.teamfinder.Entity.ProjectEntry;
+//import org.teamfinder.Service.ProjectSearchService;
+import org.teamfinder.Service.ProjectSearchService;
 import org.teamfinder.Service.ProjectService;
+import org.teamfinder.dto.ProjectSearchRequest;
+//import org.teamfinder.dto.ProjectSearchRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,13 +26,6 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-
-//    private final ProjectMembershipService projectMembershipService;
-
-//    @GetMapping("/secure-test")
-//    public String secureTest() {
-//        return "✅ Token is valid, secure endpoint accessed!";
-//    }
 
     //Create new project (only logged-in user can create)
     @PostMapping
@@ -63,7 +60,7 @@ public class ProjectController {
 
             return new ResponseEntity<>(userProjects, HttpStatus.OK);
         } catch (Exception e) {
-//            e.printStackTrace();
+
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -73,7 +70,6 @@ public class ProjectController {
     public ResponseEntity<List<ProjectEntry>> getAllProjects() {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//            String ownerEmail = authentication.getName();
             List<ProjectEntry> allProjects = projectService.getAll();
             return new ResponseEntity<>(allProjects, HttpStatus.OK);
         } catch (Exception e) {
@@ -160,4 +156,16 @@ public class ProjectController {
 //
 //        }
 //    }
+
+
+    private final ProjectSearchService projectSearchService;
+
+    @PostMapping("/search")
+    public ResponseEntity<?> searchProjects(@RequestBody ProjectSearchRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        var results = projectSearchService.searchProjects(request);
+        return ResponseEntity.ok(results);
+    }
+
+    
 }
