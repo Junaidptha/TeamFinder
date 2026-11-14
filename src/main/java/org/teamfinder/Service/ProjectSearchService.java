@@ -11,6 +11,7 @@ import org.teamfinder.dto.ProjectSearchRequest;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -33,8 +34,11 @@ public class ProjectSearchService {
 
         // 🧪 Technology filter (ARRAY FIELD)
         if (req.getTech() != null && !req.getTech().isBlank()) {
+            // case-insensitive exact match: new projects store lowercase technologies,
+            // older ones may still be stored with their original casing
             criteriaList.add(
-                    Criteria.where("technologies").in(req.getTech())
+                    Criteria.where("technologies")
+                            .regex("^" + Pattern.quote(req.getTech().trim()) + "$", "i")
             );
         }
 

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import org.teamfinder.Service.SkillNormalizer;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,11 @@ public class ProjectEntry {
     private List<String> joinRequests = new ArrayList<>();
 
     private List<String> members = new ArrayList<>();
+
+    // Always stored trimmed + lowercase
+    public void setTechnologies(List<String> technologies) {
+        this.technologies = SkillNormalizer.normalize(technologies);
+    }
 //    // 🔹 Hidden details visible only to owner + joined members
 //    private String githubRepo;
 //    private String projectPlan;

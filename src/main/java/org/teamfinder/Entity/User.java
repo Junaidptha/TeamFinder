@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import org.teamfinder.Service.SkillNormalizer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +31,12 @@ public class User {
     @DBRef
     private List<ObjectId> projectJoined = new ArrayList<>();
     private List<String> roles;
+
+    // Always stored trimmed + lowercase (see setSkills)
+    private List<String> skills = new ArrayList<>();
+
+    public void setSkills(List<String> skills) {
+        this.skills = SkillNormalizer.normalize(skills);
+    }
 
 }

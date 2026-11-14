@@ -10,6 +10,10 @@ import org.teamfinder.Entity.User;
 import org.teamfinder.Repository.UserRepository;
 import org.teamfinder.Service.UserService;
 
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
@@ -49,6 +53,25 @@ public class UserController {
 
         userService.saveUser(existingUser);
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+    }
+
+    // ✅ Update own skills: body is a JSON array, e.g. ["java","spring boot","react"]
+    @PutMapping("/skills")
+    public ResponseEntity<?> updateSkills(@RequestBody(required = false) List<String> skills) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        if (skills == null || skills.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Skills list must not be empty"));
+        }
+        try {
+            User updated = userService.updateSkills(username, skills);
+            return ResponseEntity.ok(Map.of("skills", updated.getSkills()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(Map.of("error", e.getMessage()), HttpStatus.NOT_FOUND);
+        }
     }
 
     // ✅ Delete user (self delete)
